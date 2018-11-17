@@ -2,44 +2,40 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-import home from '@/components/home/home'
-import register from '@/components/register/register'
-import login from "@/components/login/login"
-import firstpage from '@/components/firstpage/firstpage'
-import person from '@/components/person/person'
-
 export default new Router({
   routes: [{
       path: "/",
       name: "home",
-      component: home,
-      children: [
-        {
-          path:"",
-          name:"firstpage",
-          component:firstpage
+      component: resolve=>require(['@/components/home/home'],resolve),
+      children: [{
+          path: "",
+          name: "firstpage",
+          component: resolve=>require(['@/components/firstpage/firstpage'],resolve),
         },
         {
-          path:"/firstpage",
-          name:"firstpage",
-          component:firstpage
+          path: "/firstpage",
+          name: "firstpage",
+          component:resolve=>require(['@/components/firstpage/firstpage'],resolve),
         },
         {
           path: "/login",
           name: "login",
-          component: login
+          component: resolve=>require(["@/components/login/login"],resolve),
         },
         {
           path: '/register',
           name: 'register',
-          component: register
+          component: resolve=>require(['@/components/register/register'],resolve),
         }
       ]
     },
     {
-      path:'/person',
-      name:"person",
-      compoent:person
+      path: '/person',
+      name: "person",
+      meta:{
+        requiresAuth:true
+      },
+      component:resolve=>require(['@/components/person/person'],resolve)
     }
   ]
 })

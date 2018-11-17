@@ -1,5 +1,11 @@
 <template>
-  <router-view/>
+  <transition
+    enter-active-class="fadeIn"
+    leave-active-class="fadeOut"
+    mode="out-in"
+  >
+    <router-view />
+  </transition>
 </template>
 
 <script>
@@ -9,7 +15,7 @@ export default {
 </script>
 
 <style>
-body{
+body {
   background-color: rgb(225, 225, 225);
 }
 </style>

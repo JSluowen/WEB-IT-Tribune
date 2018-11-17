@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
 export default {
   data() {
     return {
@@ -55,9 +56,39 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("登录");
+          var pass = md5(this.ruleForm.password)
+          this.$api.user.userLogin({
+            username:this.ruleForm.username,
+            password:pass
+          }).then((data)=>{
+            if(!data.have){
+              this.$message({
+                type:"warning",
+                message:"此用户不存在"
+              })
+            }else if(!data.status){
+               this.$message({
+                type:"warning",
+                message:"此用户还在审核中"
+              })
+            }else if(!data.pas){
+              this.$message({
+                type:"warning",
+                message:"密码错误"
+              })
+            }else{
+              sessionStorage.setItem('token',data.token)
+             
+              this.$router.push({
+                path:'/person'
+              })
+            }
+          })
         } else {
-          console.log("error submit!!");
+         this.$message({
+           type:"error",
+           message:"登录失败"
+         })
           return false;
         }
       });

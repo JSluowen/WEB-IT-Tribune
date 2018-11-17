@@ -11,6 +11,15 @@ const user ={
                 reject(error.data)
             })
         })
+    },
+    userLogin(params){
+        return new Promise((resolve,reject)=>{
+            axios.post(`${base.userLogin}`,qs.stringify(params)).then((res)=>{
+                resolve(res.data)
+            }).catch((error)=>{
+                reject(error.data)
+            })
+        })
     }
 }
 

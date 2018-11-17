@@ -1,5 +1,5 @@
 <template>
-    <div class='person'>
+    <div>
         我是个人界面的展示
     </div>
 </template>

@@ -16,7 +16,6 @@
                 <el-form-item label="用户名称" prop="username">
                   <el-input type="text" v-model="ruleForm2.username" autocomplete="off"></el-input>
                 </el-form-item>
-
                 <el-form-item label="密码" prop="pass">
                   <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
                 </el-form-item>
@@ -76,11 +75,9 @@ export default {
     var validateEmail = (rule, value, callback) => {
       if (value == "") {
         callback(new Error("请输入邮箱地址"));
-      }
-       else if (!this.checkemail(value)) {
+      } else if (!this.checkemail(value)) {
         callback(new Error("请输入正确的邮箱地址"));
-      }
-      else {
+      } else {
         callback();
       }
     };
@@ -108,6 +105,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.ruleForm2.pass = md5(this.ruleForm2.pass);
+
           this.$api.user
             .userRegister({
               username: this.ruleForm2.username,
@@ -125,6 +123,7 @@ export default {
                   type: "success",
                   message: data.message
                 });
+
                 this.$router.push({
                   path: "/login"
                 });
@@ -137,6 +136,10 @@ export default {
               });
             });
         } else {
+          this.$message({
+            type: "error",
+            message: "注册失败"
+          });
           return false;
         }
       });

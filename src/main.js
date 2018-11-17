@@ -18,6 +18,7 @@ Vue.use(ElementUI);
 
 router.beforeEach((to,from,next)=>{
   var token =sessionStorage.getItem('token')
+  console.log(token)
   if(to.matched[0].meta.requiresAuth){
     if(token){
       next()
