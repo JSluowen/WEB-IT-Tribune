@@ -10,28 +10,25 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'vue2-animate/dist/vue2-animate.min.css'
 import api from './api'
-
 Vue.prototype.$api = api
-
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 
-router.beforeEach((to,from,next)=>{
-  var token =sessionStorage.getItem('token')
-  console.log(token)
-  if(to.matched[0].meta.requiresAuth){
-    if(token){
+router.beforeEach((to, from, next) => {
+  var token = sessionStorage.getItem('token')
+  if (to.matched[0].meta.requiresAuth) {
+    if (token) {
       next()
-    }else{
+    } else {
       next({
-        path:'/login',
-        query:{
-          redirect:to.fullPath
+        path: '/login',
+        query: {
+          redirect: to.fullPath
         }
       })
     }
 
-  }else{
+  } else {
     next()
   }
 })
@@ -40,6 +37,8 @@ router.beforeEach((to,from,next)=>{
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
