@@ -39,7 +39,7 @@ export default new Router({
       children: [{
           path: "",
           name: 'personHome',
-          component: resolve => require(['@/components/person/personHome/personHome'],resolve),
+          component: resolve => require(['@/components/person/personHome/personHome'], resolve),
           meta: {
             requiresAuth: true
           }
@@ -47,10 +47,43 @@ export default new Router({
         {
           path: '/personhome',
           name: 'personHome',
-          component: resolve => require(['@/components/person/personHome/personHome'],resolve),
+          component: resolve => require(['@/components/person/personHome/personHome'], resolve),
           meta: {
             requiresAuth: true
           }
+        },
+        {
+          path: '/personpage',
+          name: 'personpage',
+          component: resolve => require(['@/components/person/personPage/personPage'], resolve),
+          meta: {
+            requiresAuth: true
+          },
+          children: [{
+              path: '',
+              name: 'personarticle',
+              component: resolve => require(['@/components/person/personArticle/personArticle'], resolve),
+              meta: {
+                requiresAuth: true
+              }
+            },
+            {
+              path: 'personarticle',
+              name: 'personArticle',
+              component: resolve => require(['@/components/person/personArticle/personArticle'], resolve),
+              meta: {
+                requiresAuth: true
+              }
+            },
+            {
+              path: 'personfriend',
+              name: 'personfriend',
+              component: resolve => require(['@/components/person/personFriend/personFriend'], resolve),
+              meta: {
+                requiresAuth: true
+              }
+            }
+          ]
         }
       ]
     }
