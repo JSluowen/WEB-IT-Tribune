@@ -10,19 +10,17 @@
         <div class="col-md-4">
           <ul class="banner">
             <li>
-              <router-link to="/">首页</router-link>
+
+              <span @click="Home()">首页</span>
             </li>
             <li>
-              <router-link to="">前端</router-link>
+              <span>前端</span>
             </li>
             <li>
-              <router-link to="">后台</router-link>
+              <span>后台</span>
             </li>
             <li>
-              <router-link to="">算法</router-link>
-            </li>
-            <li>
-              <router-link to="/login">登录</router-link>
+              <span>其他</span>
             </li>
           </ul>
         </div>
@@ -35,6 +33,20 @@
 export default {
   data() {
     return {};
+  },
+  methods: {
+    Home() {
+      var token = sessionStorage.getItem("token");
+      if (token) {
+        this.$router.push({
+          path: "/personhome"
+        });
+      } else {
+        this.$router.push({
+          path: "/firstpage"
+        });
+      }
+    }
   }
 };
 </script>
@@ -69,8 +81,8 @@ export default {
     align-items: center;
     color: white;
     li {
-        white-space: nowrap;
-      a {
+      white-space: nowrap;
+      span {
         color: white;
         text-decoration: none;
         &:hover {

@@ -1,5 +1,5 @@
 <template>
-  <div class='firtpage'>
+  <div class='personHome'>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-8">
@@ -9,40 +9,34 @@
         </div>
         <div class="col-md-4">
           <div class="userinfo">
-            <userinfo-item />
+            <person-userinfo />
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import articlesItem from "../article/article";
-import userinfoItem from "../userinfo/userinfo";
+import articlesItem from "@/components/article/article";
+import personUserinfo from "../personUserinfo/personUserinfo";
 export default {
   data() {
     return {};
   },
   components: {
     articlesItem,
-    userinfoItem
+    personUserinfo
   }
 };
 </script>
 
 <style lang='less' scoped>
-.firtpage {
+.personHome {
   margin-top: 1%;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  .article {
-  }
-  .userinfo {
- 
-  }
 }
 </style>
