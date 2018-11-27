@@ -16,6 +16,9 @@ export default {
 
 <style>
 body {
+  margin: 0px;
+  padding: 0px;
   background-color: rgb(225, 225, 225);
+  overflow-y: scroll;
 }
 </style>

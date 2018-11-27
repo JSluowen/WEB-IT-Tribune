@@ -2,6 +2,7 @@
 
 var base ={
     userRegister:"/user/register",
-    userLogin:'/user/userlogin'
+    userLogin:'/user/userlogin',
+    fileavatarimg:'/file/fileavatarimg'
 }
 export default base

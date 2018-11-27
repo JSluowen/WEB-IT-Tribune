@@ -68,7 +68,7 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名称", trigger: "blur" }
+          { required: true, message: "请输入用户姓名", trigger: "blur" }
         ],
         password: [
           { required: true, message: "请输入用户密码", trigger: "blur" }
@@ -111,7 +111,7 @@ export default {
                 });
               } else {
                 sessionStorage.setItem("token", data.token);
-
+                sessionStorage.setItem("username",this.ruleForm.username);
                 this.$router.push({
                   path: "/person"
                 });

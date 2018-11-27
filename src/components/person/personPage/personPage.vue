@@ -8,8 +8,8 @@
                         <div class="userinfo">
                             <div class="userinfo-middle">
                                 <div class="avatar">
-                                    <img src="@/assets/avatar/1.jpg" alt="">
-                                </div>
+                                    <img src="http://localhost:3000/uploads//1543315315114.jpg" alt="">
+                                </div>                              
                                 <div class="title">
                                     <div class="name">张三</div>
                                     <div class="gender" v-if="gender==='男'">
@@ -26,10 +26,10 @@
                         </div>
                         <div class="action">
                             <div class="action-content">
-                                <div class='person-article' @click="$router.push({path:'/personpage/personarticle'})">我的文章</div>
-                                <div class="person-friend" @click="$router.push({path:'/personpage/personfriend'})">我的好友</div>
-                                <div class="person-collect">我的收藏</div>
-                                <div class="person-editor">编辑信息</div>
+                                <div class='person-article' @click="$router.push({path:'/personpage/personarticle'})">个人文章</div>
+                                <div class="person-friend" @click="$router.push({path:'/personpage/personfriend'})">好友关注</div>
+                                <div class="person-collect" @click="$router.push({path:'/personpage/personcollect'})">个人收藏</div>
+                                <div class="person-editor" @click="$router.push({path:'/personpage/personeditor'})">个人信息</div>
                             </div>
                         </div>
                     </div>
@@ -41,11 +41,7 @@
                 <div class="col-md-8">
                     <div class="person-bottom">
                         <div class="information">
-                            <transition
-                                enter-active-class="fadeIn"
-                                leave-active-class="fadeOut"
-                                mode="out-in"
-                            >
+                            <transition enter-active-class="fadeIn" leave-active-class="fadeOut" mode="out-in">
                                 <router-view />
                             </transition>
                         </div>
@@ -57,13 +53,20 @@
 </template>
 
 <script>
+
+import myUpload from "vue-image-crop-upload/upload-1.vue";
 export default {
   data() {
     return {
-      gender: "男"
-    };
+      gender: "男",
+    }
   },
-  components: {}
+  components: {
+   
+  },
+  methods: {
+   
+  }
 };
 </script>
 
@@ -91,7 +94,6 @@ export default {
         align-items: center;
         position: relative;
         top: 20px;
-
         .avatar {
           width: 100px;
           height: 100px;
@@ -158,7 +160,6 @@ export default {
     top: 20px;
     width: 100%;
     height: 100%;
-    border: 1px solid red;
   }
 }
 </style>

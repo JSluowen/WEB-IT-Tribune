@@ -82,6 +82,22 @@ export default new Router({
               meta: {
                 requiresAuth: true
               }
+            },
+            {
+              path:"personeditor",
+              name:"personeditor",
+              component:resolve=>require(['@/components/person/personEditor/personEditor'],resolve),
+              meta:{
+                requiresAuth:true
+              }
+            },
+            {
+              path:"personcollect",
+              name:"personcollect",
+              component:resolve=>require(['@/components/person/personCollect/personCollect'],resolve),
+              meta:{
+                requiresAuth:true
+              }
             }
           ]
         }

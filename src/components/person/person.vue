@@ -3,9 +3,12 @@
     <div class="header">
       <header-not />
     </div>
-    <transition enter-active-class="fadeIn" leave-active-class="fadeOut" mode="out-in">
-      <router-view />
-    </transition>
+    <div class="body">
+      <transition enter-active-class="fadeIn" leave-active-class="fadeOut" mode="out-in">
+        <router-view />
+      </transition>
+    </div>
+
   </div>
 </template>
 
@@ -25,6 +28,13 @@ export default {
 .person {
   .header {
     width: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 0px;
+  }
+  .body{
+    position: relative;
+    top: 50px;
   }
 }
 </style>

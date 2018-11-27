@@ -40,6 +40,7 @@ export default {
       })
         .then(() => {
           sessionStorage.removeItem("token");
+           sessionStorage.removeItem("username");
           this.$router.push({
             path: "/login"
           });
