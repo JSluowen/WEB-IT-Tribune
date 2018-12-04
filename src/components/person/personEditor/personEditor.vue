@@ -116,6 +116,8 @@ export default {
     var checkEmail = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("邮箱不能为空"));
+      }else if(!this.checkemail(value)){
+        return callback(new Error("请输入正确的邮箱格式"));
       }
       return callback();
     };
@@ -129,13 +131,13 @@ export default {
       if (!value) {
         return callback(new Error("请选择性别"));
       }
-      return callback()
+      return callback();
     };
     var checkSignature = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("请简单的描述下自己吧"));
       }
-       return callback()
+      return callback();
     };
     return {
       ruleForm: {
@@ -168,7 +170,40 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.getAvatarimg().then(data => {
-            console.log(data.avatar);
+            this.$api.user
+              .userInfo({
+                email: this.ruleForm.email,
+                gender: this.ruleForm.gender,
+                type: this.ruleForm.type,
+                avatar: data.avatar,
+                signature: this.ruleForm.signature,
+                username: sessionStorage.getItem("username")
+              })
+              .then(data => {
+                if (data.success) {
+                  this.$notify({
+                    type: "success",
+                    title: "提示信息",
+                    message: "信息完善成功",
+                    offset: 100,
+                    duration: 1000
+                  });
+                  this.$router.push({
+                    path: "/personpage"
+                  });
+                } else {
+                  this.$notify({
+                    type: "warning",
+                    title: "提示信息",
+                    message: "信息完善失败！",
+                    offset: 100,
+                    duration: 1000
+                  });
+                }
+              })
+              .catch(err => {
+                console.log(err.data);
+              });
           });
         } else {
           this.$notify({
@@ -223,13 +258,27 @@ export default {
           that.$api.user
             .fileavatarimg(formData)
             .then(data => {
-              resolve(data.data);
+              if (data.success) {
+                resolve(data);
+              } else {
+                this.$notify({
+                  type: "warning",
+                  title: "警告信息",
+                  message: "头像上传失败",
+                  offset: 100,
+                  duration: 1000
+                });
+              }
             })
             .catch(err => {
               reject(err.data);
             });
         });
       });
+    },
+    checkemail(value) {
+      var patt = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+      return patt.test(value);
     }
   },
   components: {

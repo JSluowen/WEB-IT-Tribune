@@ -8,7 +8,7 @@
                         <div class="userinfo">
                             <div class="userinfo-middle">
                                 <div class="avatar">
-                                    <img src="http://localhost:3000/uploads//1543315315114.jpg" alt="">
+                                    <img src="" alt="">
                                 </div>                              
                                 <div class="title">
                                     <div class="name">张三</div>

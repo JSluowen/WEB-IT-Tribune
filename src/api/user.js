@@ -1,6 +1,9 @@
 import base from '@/api/base'
 import axios from '@/http/http'
 import qs from 'qs'
+import {
+  userInfo
+} from 'os';
 
 const user = {
   // 用户注册
@@ -30,15 +33,25 @@ const user = {
         headers: {
           'Conent-Type': 'multipart/form-data',
         }
-      }).then((data) => {
-        resolve(data)
+      }).then((res) => {
+        resolve(res.data)
+        console.log(res.data)
       }).catch((err) => {
-        reject(err)
+        reject(err.data)
+        console.log(err.data);
+      })
+    })
+  },
+  // 用户完善个人信息
+  userInfo(params) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${base.userInfo}`, qs.stringify(params)).then((res) => {
+        resolve(res.data)
+      }).catch((err)=>{
+        reject(err.data)
       })
     })
   }
-  // 用户完善个人信息
-
 }
 
 export default user
